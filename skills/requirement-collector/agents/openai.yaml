@@ -1,0 +1,3 @@
+interface:
+  display_name: "Requirement Collector"
+  short_description: "Organize requirements and draft tickets after approval"

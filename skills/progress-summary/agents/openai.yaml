@@ -1,0 +1,4 @@
+interface:
+  display_name: "Weekly Leadership Narrative"
+  short_description: "Research the week and draft a natural spoken update"
+  default_prompt: "Use $progress-summary with $work-detective to research this week and write my 2–3 minute update for my audience using bold Regarding topic labels, narrative bullets, accurate I ownership, and natural transitions."
