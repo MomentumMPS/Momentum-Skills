@@ -5,7 +5,8 @@
 This repository backs up the maintainer's custom skills that are not maintained
 in `MomentumMPS/standards-momentum-skills`. Compare that repository's actual
 inventory before adding or moving a skill; do not classify solely by its name.
-Do not duplicate its four audit/audit-authoring skills here.
+Do not duplicate its audit/audit-authoring skills here; verify the live inventory
+rather than relying on a fixed count.
 
 Include a third-party skill only when a retained custom skill requires it,
 including a conditional workflow dependency. Record the consuming skill,

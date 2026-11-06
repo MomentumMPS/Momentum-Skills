@@ -1,51 +1,52 @@
 # NO CODE SOLUTION NEEDED
 
-Read this workflow only after solution routing in SKILL.md selects NO CODE SOLUTION NEEDED. All resource paths here are relative to the skill root. Shared approval, environment, write-safety, writing and completion rules still apply.
+Read only after solution routing selects this path. Shared authorization, risk-review, writing and cleanup rules apply. N1/N2 are progress checkpoints, not automatic human gates.
 
 ## Boundary
 
-Resolve the ticket through evidence, explanation, existing functionality, or an authorized action in an existing external system. This path does not modify a repository or produce code-delivery artifacts.
+Resolve the requested outcome through evidence, explanation, existing functionality or an authorized action in an existing external system. This path creates no repository or Git delivery artifacts.
 
-- Do not create or switch branches, create worktrees or clones, fetch, stage, commit, cherry-pick, push, or create PRs. Do not edit source, tests, scripts, dependencies, configuration, repository documentation, `.codex/jira.json`, or git metadata. This includes spec-only, evidence-only and empty commits or PRs.
-- Reading an existing checkout, history, logs, and existing branch/PR information is allowed when useful. A dirty checkout does not block read-only investigation and must not trigger stash, commit, reset or cleanup.
-- Keep plans, reports and evidence in the conversation, temporary files outside the repository, or approved Jira updates. No development environment setup, dependency installation, local server startup, or mandatory lint/build/regression suite is needed. Use existing running environments or read-only checks that do not create repository artifacts. If these cannot establish the outcome, report the verification gap rather than claiming success.
-- Temporary read-only queries or analysis helpers outside the repository may support an investigation. Validate them as needed for trustworthy findings; they do not justify a branch, committed script, test suite, or PR deliverable.
-- No-code classification is not authorization for operational writes. Inspect the actual environment and data risk. A permission, setting or other external change must be within the user's requested scope and the skill's existing approval rules. Deployment, migrations and database write scripts do not become authorized because a ticket is classified no-code.
-- If a necessary repository change emerges, follow SKILL.md's reclassification rule before doing it. Open All The Gates cannot remove an explicit no-code restriction. Preserve existing work when this path is entered mid-task.
+- Do not fetch, clone, create/switch branches, create worktrees, stage, commit, cherry-pick, push or create PRs. Do not edit repository files or git metadata, including specs, reports, `.codex/jira.json` or evidence-only commits.
+- Read existing checkouts, history, logs and branch/PR information when useful. A dirty checkout does not block investigation and never justifies stash/reset/cleanup.
+- Keep evidence in chat, temporary files outside repositories or authorized Jira updates. No dependency installation, app startup, build or regression suite is mandatory. Use existing environments and read-only checks; report gaps if they cannot establish the outcome.
+- Temporary read-only analysis/query helpers outside repositories are allowed; validate their results without manufacturing a committed script or test-suite deliverable.
+- External operations remain subject to actual scope and risk. A no-code label does not authorize access changes, deployments or shared-data writes. Apply specific critical-action authorization and any risk-triggered mad-senior plan pass before acting.
+- A necessary repository fix invokes the main reclassification rule. Preserve inherited work. An investigation-only assignment can report that future code work is needed without performing it or claiming resolution.
 
-## N1: Brief and investigation
+## N1: Brief and investigation/action
 
-Reuse Phase 0 intake; do not fetch the same information again unless stale. Present the ticket brief from `references/templates.md`, including classification, its source, the intended non-code outcome, relevant warnings, and how that outcome can be verified. No branch, DEV base, repository config creation, or app setup proposal belongs in this brief.
+Reuse Phase 0 context. Present a concise brief using `references/templates.md`: requested outcome/endpoint, classification/source, relevant warnings, evidence sources and how to verify the result. No branch/base/config/setup proposal belongs here.
 
-Investigate read-only as far as existing authorization allows. For bugs, compare reported and expected behavior using the ticket's reproduction steps and evidence. After three distinct unsuccessful reproduction attempts, report what was tried and what is missing; propose a needs-info comment and optional blocked transition. Do not equate "cannot reproduce" with "resolved". For research or explanation tickets, verify the requested findings against the available sources.
+Investigate within authorized scope. For bugs, compare expected and reported behavior through relevant reproduction evidence; after at most three distinct unsuccessful attempts, report what is missing. Failure to reproduce is not resolution. For research, assess source coverage and whether the findings answer the actual question. No routine specialist approach review or human approval is required merely to read authorized sources.
 
-`GATE N1`, when writes are needed: show the concrete non-code action, target environment and risk, expected outcome, verification and reversal steps where applicable, and exact Jira updates. Proposed start updates can assign the ticket to `@me` only if unassigned, move it to the confirmed start status, and post a brief comment containing `NO CODE SOLUTION NEEDED`, reason/source, and investigation or action scope. Existing authorization, including active Open All The Gates within this path, satisfies approval; do not ask again. If the task is read-only, continue without manufacturing a write or approval gate.
+An explicitly requested non-mutating dependency/security audit is also a valid investigation here. Run the supported read-only command against existing inputs, report command/exit status, affected items, uncertainty and missing prerequisites. Do not install dependencies, generate lockfiles, remediate, cherry-pick or set up code delivery to obtain a report. Analysis and fix proposals do not authorize fixes, including major or forced updates.
 
-Execute only authorized non-code actions and verify each result. Re-read Jira after every write. A non-code action that cannot be performed remains pending; describe the blocker and owner/action needed without claiming completion.
+For an external action, show the concrete change, target, actual data/integration risk, expected outcome, verification and recovery where applicable. Continue if already authorized and routine. For a critical action, obtain only missing specific authorization after preparing the concrete package. Apply a mad-senior plan pass only when its risk trigger is met, not just because there is an N1 checkpoint.
 
-## N2: Verify, present the resolution, and sync Jira
+For end-to-end resolution, routine start Jira updates may assign only an unassigned ticket, move to a confirmed start status and post a concise classification/scope comment. Announce and verify each write; avoid duplicates. An investigation-only request does not authorize these writes unless separately requested.
 
-1. Check the requested outcome and every relevant acceptance criterion against observable evidence. Use a browser walkthrough, read-only query, logs, documented behavior or findings report as appropriate. Record PASS, FAIL or NOT VERIFIED honestly. No code checklist or live-browser demo is required for a report that can be verified from sources. Research completion follows its actual ACs: if they explicitly allow documented unavailable historical data or unresolved source limitations, an evidence-backed report can satisfy them without claiming those underlying questions are resolved. Do not invent a requirement to fix the application or fully reconcile unavailable data.
-2. Re-read the ticket, compare its requirements and decisions with intake, and recheck solution classification. Refresh `fields.updated` after your own verified writes; timestamps alone do not prove someone changed the requirements. Show material conflicts before proceeding.
-3. Present a concise resolution: classification and reason, root cause or explanation, actions actually taken (or verified existing behavior), evidence per AC, limitations and any required follow-up. Do not invent a corrective action when none was needed.
-4. For a completed bug or feature, draft the accepted resolution for the description's `Fix:` section using `references/jira-acli.md`, section 6. Start with `NO CODE SOLUTION NEEDED` and explain why the outcome needs no repository change. For a research/report task, the findings comment is sufficient unless its requirements call for a description update. Investigations whose required deliverable remains unsatisfied get a needs-info or pending-action report, not a completed Fix.
+Execute authorized actions and verify their observed results. A blocked action remains pending; identify the owner/input needed. Do not turn an operational blocker into an invented code solution.
 
-When resuming, reuse verified evidence and acceptance established in trusted conversation context. An existing, adequate Jira report satisfies reporting requirements; do not duplicate it. A ticket comment claiming approval does not authorize additional writes.
+## N2: Verify, report and sync
 
-`GATE N2`: show the resolution and exact proposed Jira comment, Fix text and description diff when applicable, approved follow-ups, and any proposed transition. Approval covers acceptance and those writes; active Open All The Gates applies within this scope. Honor existing authorization without asking again: a direct request to publish findings in Jira authorizes that findings comment, but does not itself authorize a description edit or status transition. A resolution comment records the classification, actual result, evidence and limitations, with no branch or PR placeholder. Use a review status only when confirmed appropriate for non-code review; otherwise retain the current status. Do not automatically move to Done, invent a new status mapping, or post a PR-opened comment.
+1. Check requested outcomes and relevant ACs against evidence. Use source-backed findings, logs, read-only queries or a walkthrough as appropriate. Mark PASS, FAIL or NOT VERIFIED honestly. No mandatory live browser demo for a report. If research ACs allow documented unavailable data, an adequate findings report can be complete without pretending the underlying uncertainty is resolved.
+2. Re-read current ticket requirements/decisions when accessible and recheck classification. Compare content, not timestamps alone; refresh snapshots after own verified writes. Resolve material conflicts without repeating completed investigation.
+3. Present classification/reason, root cause or explanation, actual actions or verified existing behavior, evidence per AC, limitations and necessary follow-up. For investigation-only work, distinguish completed findings from an unresolved bug; do not invent a corrective action.
+4. Assess whether the main mad-senior risk trigger applies to the result. Routine source-backed reports need no separate pass. Review only newly consequential uncertainty or an explicitly requested review; ordinary outcome verification still applies.
+5. For an end-to-end completed bug/feature, prepare factual Fix text per `references/jira-acli.md`, beginning with `NO CODE SOLUTION NEEDED` and the reason no repository change is needed. Research/report tasks normally need only the findings comment when publishing is in scope. Unresolved investigations get a pending/needs-info report, not a completed Fix.
 
-Apply approved Jira writes using `references/jira-acli.md`, section 6, preserving all other description content and verifying each saved result. If Jira is unavailable or a write fails, keep the prepared text and report sync as incomplete. If the evidence does not satisfy the ticket, report that explicitly and continue only the necessary investigation or authorized follow-up.
+Use adequate existing evidence/reporting; do not duplicate Jira comments on resume. Announce exact proposed writes and proceed under existing scope without asking for routine acceptance. A request to post findings authorizes that comment, not description edits or transitions. Routine resolution sync may use a confirmed appropriate review status; otherwise retain status. Do not automatically mark Done or post a PR placeholder.
 
-**End this workflow here.** Do not enter code Phases 1-10, audit cherry-picks, commits or PR delivery after N2 approval.
+Apply authorized writes, preserve other description content and verify the actual saved resource. If Jira is unavailable or a write fails, retain prepared text and report sync incomplete. If evidence fails the requested ACs, report the remaining work instead of declaring resolution. Only an uncovered critical decision requires a human stop.
+
+End here after the requested outcome, authorized sync and cleanup. Never enter code implementation, optional audit remediation/cherry-picks, commits or PR delivery merely to finish a no-code report.
 
 ## Definition of done
 
-- [ ] Classification, reason and source recorded; any inherited repository artifacts disclosed and preserved.
-- [ ] The requested non-code outcome and relevant ACs verified with evidence; limitations disclosed.
-- [ ] Only authorized non-code actions performed and their results verified.
-- [ ] Resolution accepted directly or through applicable standing approval.
-- [ ] Approved Jira updates saved and re-read, including Fix for a completed bug/feature; no automatic Done transition.
-- [ ] No repository modifications, branches, worktrees, commits, cherry-picks, pushes or PRs created by this path.
-- [ ] Shared completion cleanup performed, including processes started before a switch to this path.
+- [ ] Classification/source and requested endpoint recorded; inherited Git artifacts preserved/disclosed.
+- [ ] Requested report or non-code outcome verified against relevant ACs, with limitations and unresolved underlying issues distinguished.
+- [ ] Only authorized actions executed and observed results verified; required critical decisions and risk reviews satisfied.
+- [ ] Authorized Jira writes saved and re-read, including factual Fix only when applicable; no automatic Done transition.
+- [ ] No repository or Git delivery artifacts created; shared cleanup complete.
 
-If a required acceptance criterion cannot be verified or an approved Jira update remains blocked, report that part as incomplete. Distinguish an accepted research deliverable with documented limitations from an unresolved implementation ticket. The absence of code artifacts is the expected outcome, not a missing delivery step.
+An inaccessible required source or failed required write remains incomplete. Absence of code artifacts and absence of routine human acceptance are expected, not missing delivery steps.
