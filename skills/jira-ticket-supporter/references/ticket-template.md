@@ -1,6 +1,8 @@
 # Ticket title and description
 
-The Jira summary must use `APP-OR-PROJECT-TITLE - Description of the ticket`: the real app or project display title, followed by a space, a hyphen, a space, and the ticket description. Do not wrap either part in square brackets. Example: `Training Portal - Add a completion-date filter`.
+For Epics, use [epic-standard.md](epic-standard.md) instead of the generic summary format below. All description requirements below still apply.
+
+For other ticket types, the Jira summary must use `APP-OR-PROJECT-TITLE - Description of the ticket`: the real app or project display title, followed by a space, a hyphen, a space, and the ticket description. Do not wrap either part in square brackets. Example: `Training Portal - Add a completion-date filter`.
 
 Use these sections in this order. The four bold labels belong inside Overview. Keep **Fix:** completely blank: no proposed solution, placeholder, dash, or `TBD`. Acceptance criteria describe observable outcomes without filling in Fix indirectly with an implementation plan.
 

@@ -1,7 +1,7 @@
 # Skills
 
-Reusable agent skills for development, requirements, ticket creation, and work
-reporting. Maintained in
+Reusable agent skills for coordination, development, requirements, ticket creation,
+review, and work reporting. Maintained in
 [pfonsecamoncada/Skills](https://github.com/pfonsecamoncada/Skills).
 Skills maintained in
 [Momentum Standard Skills](https://github.com/MomentumMPS/standards-momentum-skills)
@@ -12,6 +12,9 @@ one of these custom skills depends on them.
 
 | Skill | Ownership | Purpose |
 | --- | --- | --- |
+| [coordinator](skills/coordinator) | Custom | Coordinate the overall outcome across specialist skills and bounded agents. |
+| [skill-improver](skills/skill-improver) | Custom | Review and improve skill intent, strategy, and instructions. |
+| [mad-senior](skills/mad-senior) | Custom | Review consequential non-code decisions and evidence. |
 | [development-orchestrator](skills/development-orchestrator) | Custom | Coordinate skills, reviews, approvals, and delivery. |
 | [development-supporter](skills/development-supporter) | Custom | Resolve Jira work through code, branch setup, or a no-code outcome. |
 | [jira-ticket-supporter](skills/jira-ticket-supporter) | Custom | Draft and create Jira tickets with reusable templates and verified context. |
@@ -20,6 +23,8 @@ one of these custom skills depends on them.
 | [work-detective](skills/work-detective) | Custom | Reconstruct work across connected sources with supporting evidence. |
 | [ponytail-review](skills/ponytail-review) | Third-party dependency | Review proposals and results for the development workflows. |
 | [find-skills](skills/find-skills) | Third-party dependency | Discover missing capabilities for development-orchestrator. |
+| [skill-creator](skills/skill-creator) | Third-party dependency | Author and validate capabilities when Coordinator needs them. |
+| [openai-docs](skills/openai-docs) | Third-party dependency | Verify Codex configuration and client guidance for capability creation. |
 
 Everything lives directly under `skills/<skill-name>/`. Supporting files stay
 with their skill. There are no product-specific copies or category directories.
@@ -91,13 +96,13 @@ py -3 install.py
 Native Windows symlinks require suitable permissions (commonly Developer Mode).
 If symlinks are unavailable, copy each complete `skills/<skill-name>` directory
 into `%USERPROFILE%\.agents\skills\` and `%USERPROFILE%\.claude\skills\` after
-checking for conflicts. Keep all eight folders together in each location so
+checking for conflicts. Keep all thirteen folders together in each location so
 relative dependency references resolve. Copies must be updated manually.
 
 ### Verify and use
 
 Start a fresh session in each product, open an unrelated project, and ask it to
-list the available skills. Confirm the six custom skills and two dependencies
+list the available skills. Confirm the nine custom skills and four dependencies
 appear. For example: "Use requirement-collector to organize these requirements."
 Codex also supports `$skill-name`; Claude Code and Cursor support `/skill-name`.
 
@@ -106,11 +111,13 @@ Jira workflows require authenticated `acli`; repository delivery requires Git
 and `gh`; discovery through `find-skills` uses Node.js/npm. Work research needs
 the relevant connectors or permitted browser/desktop tools. Check the selected
 skill's prerequisites and use the capabilities exposed by the current product.
+Skill validation uses Python 3 with PyYAML; the OpenAI Docs helpers use Node.js
+and network access. Install these only when their selected workflow needs them.
 Installing a skill does not install connectors or authorize external writes.
 
 When a required tool is missing, ask your assistant to help install it from its
 official source and verify it before continuing that workflow. Install optional
-tools only when needed. This repository bundles the two required third-party
+tools only when needed. This repository bundles the four required third-party
 skill folders, not their entire upstream packages, command-line tools, or
 binaries. Their licenses and sources are recorded in SOURCES.md.
 
@@ -132,9 +139,10 @@ see updated files. Preserve local edits before pulling; do not reset them away.
 If a skill is removed from the repository, remove its obsolete user-level links
 after checking their targets.
 
-Edit the repository copy as the source of truth. Changes made through an
-installed symlink also change this clone. Review `git diff` before committing and
-pushing backups. Do not copy entire installed-skill or plugin-cache directories
+For installations linked to this clone, changes through an installed symlink
+also change the repository. When backing up separately maintained installed
+skills, compare their active sources and apply privacy and portability changes
+only to repository copies. Review `git diff` before committing and pushing backups. Do not copy entire installed-skill or plugin-cache directories
 into the repository.
 
 To uninstall, remove only the per-skill symlinks that point into this clone from

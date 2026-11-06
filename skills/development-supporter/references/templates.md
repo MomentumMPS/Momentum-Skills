@@ -1,8 +1,8 @@
 # Output templates
 
-Read the section you need when SKILL.md points here. All templates follow the Writing rules in SKILL.md (ASCII only).
+Read only the needed section. Scale these templates to the actual change; a small fix needs a concise spec and PR, not empty boilerplate. They are progress artifacts, not automatic approval forms. Follow the main writing rules.
 
-## Ticket brief (code Gate 2 / no-code Gate N1)
+## Ticket brief (code checkpoint 2 / no-code N1)
 
 ```markdown
 ### ABC-123: Login redirect fails after session expires
@@ -11,6 +11,7 @@ Assignee: unassigned   Reporter: Ana Perez   Sprint: Sprint 42
 Link: https://acme.atlassian.net/browse/ABC-123
 Solution: CODE SOLUTION NEEDED | NO CODE SOLUTION NEEDED
 Reason and source: <required repository change or non-code outcome; user instruction / field / comment / evidence>
+Requested endpoint: <investigation / proposal / local change / end-to-end delivery>
 
 Description: <converted description, trimmed to what matters>
 Acceptance criteria: <from Jira, or "missing, establish during investigation">
@@ -35,7 +36,7 @@ Ticket: <link>   Type: bug | feature | ...   Environment: <chosen>
 ### Acceptance criteria
 - AC-1: Given <context>, when <action>, then <observable result>.
 - AC-2: ...
-Source: <Jira field / Jira description / drafted, needs approval>
+Source: <Jira field / Jira description / drafted from requested behavior; flag unresolved product choices>
 
 ### Out of scope
 - <items deliberately not handled>
@@ -90,10 +91,11 @@ Below the tables, list the reproduction steps for each in-scope ID. Use gray via
 | AC-1 | PASS | Steps 1-4 on /reports, screenshot 2 |
 | AC-2 | PASS | Unit test reports.export.test.ts plus manual check |
 
-Checks: lint PASS, typecheck PASS, tests 142 passed / 0 failed, build PASS
+Checks: <actual relevant commands/results; skipped or unavailable checks and why>
+Specialist review: <not required and reason / reviewer, target, risk and verdict>
 Files changed: 6 (list)
 Known limitations: <if any>
-Jira: ticket unchanged since start / CHANGED, see notes
+Jira requirements: unchanged since last verified snapshot / material changes and resolution / not re-read, reason
 ```
 
 ## PR body

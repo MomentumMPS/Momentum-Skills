@@ -45,7 +45,7 @@ If find-skills cannot access a requested product/host, look for an installed dis
 
 Distinguish discovery, compatibility inspection, installation and execution. Searching does not authorize installing, updating, removing or syncing skills, starting another agent product, or executing scripts/hooks from a discovered skill. Propose the concrete source, destination, dependencies and required changes when installation/adaptation is needed; honor existing user authorization without redundant confirmation. Use an appropriate installer/authoring skill for authorized changes.
 
-When a required owner or Ponytail reviewer is missing, report the dependency and continue independent discovery/read-only preparation. Do not replace its contract with a guessed workflow or report a review as passed. Alternatives can be proposed with their tradeoffs, but the human must authorize a change to a required workflow.
+When a required owner or the selected reviewer is missing, report the dependency and continue independent discovery/read-only preparation. Load Ponytail Review or mad-senior only for an applicable review trigger; an unused reviewer is not a blocker. Do not replace its contract with a guessed workflow or report a review as passed. Alternatives can be proposed with their tradeoffs, but the human must authorize a change to a required workflow.
 
 ## Cross-product compatibility
 

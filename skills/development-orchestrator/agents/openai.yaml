@@ -1,3 +1,3 @@
 interface:
   display_name: "Development Orchestrator"
-  short_description: "Coordinate code and non-code work with reviewed delivery"
+  short_description: "Coordinate agents, risk reviews, and verified delivery"
