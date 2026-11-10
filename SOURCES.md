@@ -1,6 +1,6 @@
 # Skill sources and dependencies
 
-Initially imported on 2026-11-03 and synchronized on 2026-11-06 from the
+Initially imported on 2026-11-03 and synchronized on 2026-11-10 from the
 maintainer's active installed skills. This is a curated
 backup of reusable instructions, not a dump of installed packages or runtime
 state. The maintainer confirmed authorship of `work-detective`.
@@ -9,9 +9,10 @@ state. The maintainer confirmed authorship of `work-detective`.
 
 | Skill | Active source at synchronization | Declared version/license |
 | --- | --- | --- |
-| coordinator | `~/.codex/skills/coordinator` | 1.0; no license declared |
+| coordinator | `~/.codex/skills/coordinator` | 1.3; no license declared |
+| slack-message-drafter | `~/.codex/skills/slack-message-drafter` | No version or license declared |
 | skill-improver | `~/.codex/skills/skill-improver` | No version or license declared |
-| mad-senior | `~/.codex/skills/mad-senior` | 1.2; no license declared |
+| mad-senior | `~/.codex/skills/mad-senior` | 1.3; no license declared |
 | development-orchestrator | `~/.codex/skills/development-orchestrator` | 2.2.0; MIT; bundled LICENSE retained with a non-personal contributor attribution |
 | development-supporter | `~/.agents/skills/development-supporter` | 4.1; Apache-2.0 declared in frontmatter |
 | jira-ticket-supporter | `~/.agents/skills/jira-ticket-supporter` | No version or license declared |
@@ -28,14 +29,15 @@ those older copies and all installed originals were left untouched.
 
 | Skill | Required by | Source and license |
 | --- | --- | --- |
+| ponytail | coordinator implementation routing | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail/tree/84740e3d344b69b4a133201fa519eb37a62a2b2a/skills/ponytail), active installed plugin 5.2.0, commit `84740e3d344b69b4a133201fa519eb37a62a2b2a`; MIT, copyright DietrichGebert; license copied from the same bundled plugin snapshot |
 | ponytail-review | coordinator; development-orchestrator; development-supporter; mad-senior | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail/tree/84740e3d344b69b4a133201fa519eb37a62a2b2a/skills/ponytail-review), active installed plugin 5.2.0, commit `84740e3d344b69b4a133201fa519eb37a62a2b2a`; MIT, copyright DietrichGebert |
 | skill-creator | coordinator, when a reusable capability is needed; skill-improver also uses it when available | OpenAI Codex installed system snapshot at `~/.codex/skills/.system/skill-creator`; Apache-2.0 text retained; exact upstream revision not recorded |
 | openai-docs | coordinator, when Codex configuration or client support needs verification during capability creation | OpenAI Codex installed system snapshot at `~/.codex/skills/.system/openai-docs`; Apache-2.0 text retained; exact upstream revision not recorded |
 | find-skills | development-orchestrator, when discovery needs an additional capability | [vercel-labs/skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills), locally installed snapshot; MIT, copyright Vercel, Inc. |
 
-Only these four required skill folders are bundled, with their supplied license
-files. Ponytail hooks, commands, other skills, and plugin runtime are not required
-by the review skill and are excluded. All four third-party SKILL.md files were
+Only these five required skill folders are bundled, with their supplied license
+files. Ponytail hooks, commands, optional audit/debt/help skills, and plugin runtime are not required
+by the review skill and are excluded. All five third-party SKILL.md files were
 copied without edits.
 
 The local Skills CLI lock records `find-skills` from `vercel-labs/skills`, path
@@ -71,6 +73,16 @@ own material; absence of a license is not a new redistribution grant.
 
 ## Synchronization evidence
 
+On 2026-11-10, refreshed the retained custom workflows from active installed
+sources and added the custom `slack-message-drafter`. Coordinator’s implementation
+route now requires the standalone `ponytail` skill, so that skill is bundled
+with the existing plugin license. The four existing third-party snapshots still
+match their installed sources. The collection has ten custom skills and five
+required dependencies. General catalog routes (including optional Ponytail
+audit/debt commands and document/browser tools) do not require bundling every
+optional task capability. Private state and installed originals remain excluded.
+
+
 The 2026-11-06 comparison covered all six existing custom skills and the two
 retained third-party snapshots. Development Orchestrator 2.2.0, Development
 Supporter 4.1, and Jira Ticket Supporter's Epic conventions were refreshed.
@@ -86,6 +98,10 @@ installed snapshot rather than an invented upstream commit. Entrypoint SHA-256:
 | --- | --- |
 | skill-creator | `6656e54755638e8efcf275a472b9672eaa8a9a1b9e59dc210e275b03b59e1e66` |
 | openai-docs | `aa6829e21df2223167c85d2e49b6337a7345c84c1033f1ec10182c7882b36d45` |
+
+Ponytail retains its upstream `argument-hint` frontmatter. The bundled generic
+validator does not recognize that field; YAML parsing and the source comparison
+verify it without modifying the upstream manifest.
 
 Their necessary references, scripts, UI metadata, icons and supplied license
 texts remain together; no entire system-skill collection or vendor plugin was
@@ -127,7 +143,7 @@ and team-specific choices now come from the current user.
 
 The live inventory of
 [Momentum Standard Skills](https://github.com/MomentumMPS/standards-momentum-skills/tree/main/skills)
-was checked on 2026-11-06. Its five skills remain maintained there:
+was checked on 2026-11-10. Its five skills remain maintained there:
 
 - momentum-architecture-audit
 - momentum-audit-skill-creator
@@ -135,7 +151,7 @@ was checked on 2026-11-06. Its five skills remain maintained there:
 - momentum-security-audit
 - momentum-stack-audit
 
-`pptx-generator`, the rest of Ponytail, other Codex system skills, and bundled
+`pptx-generator`, optional Ponytail skills, other Codex system skills, and bundled
 vendor plugins are installed third-party material without a required dependency
 from this collection. They are excluded. Re-evaluate this list when dependencies
 change; a new local installation alone is not reason to add it.

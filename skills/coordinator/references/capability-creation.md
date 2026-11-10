@@ -1,14 +1,19 @@
-# Create a capability only for a concrete gap
+# Create or improve a capability when it adds durable value
 
-Use this reference when the user explicitly requests a new skill/agent, or when existing skills and a focused worker brief cannot adequately handle a requested task and the missing capability is useful beyond one transient assignment. The user's Coordinator policy authorizes relevant reusable skill/agent authoring; it does not authorize unrelated installations, expanded account access or weakened controls.
+Use this reference for explicit capability requests and opportunities identified during Coordinator's normal routing, execution or completion checks. Relevant reusable local skill/agent authoring is covered by the user's Coordinator policy; it does not authorize unrelated installations, expanded account access or weakened controls. Honor narrower task instructions and the normal filesystem approval mechanism.
 
-## Choose the smallest durable addition
+## Choose the smallest useful change
 
-- **One-off specialization:** delegate with a clear prompt, scope, evidence and output contract. Do not persist a role merely because a worker needs a name.
-- **Reusable knowledge or workflow:** assign a bounded creation task to the installed `skill-creator`. Reuse or improve an existing maintained skill when that avoids overlap. The brief names the observed gap, intended requests, nearby exclusions, sources, destination, constraints, expected result and validation cases.
-- **Reusable worker role:** author a narrowly scoped Codex agent TOML when stable instructions/capability settings add value beyond a skill. Prefer referencing relevant installed skills in its instructions over copying their full workflows. A role definition is not an extra permission grant.
+- **Reuse:** an existing skill or focused worker brief is sufficient and there is no concrete durable benefit to authoring. Keep one-off details in the assignment.
+- **Improve:** an existing maintained skill owns the workflow, but its instructions cause avoidable rework, miss an accepted recurring preference, or omit reusable knowledge established by the task. Route to `skill-improver` with the observed behavior and source evidence. Distinguish an instruction defect from execution that ignored adequate instructions; the latter may need a corrected handoff, not more rules.
+- **Create:** no suitable skill owns a reusable workflow, and preserving its non-obvious method would materially help future work or repeated parts of the current assignment. Route to `skill-creator`. Successful ad hoc work can establish this opportunity; inability to complete the task is not required, nor is an arbitrary number of prior occurrences.
+- **Specialize an agent:** use a narrowly scoped Codex agent TOML only when stable role instructions/capability settings add value beyond a skill. Prefer references to installed skills over copying workflows. A role definition is not an extra permission grant.
 
-Do not create a fleet in anticipation of unspecified tasks. Finish the actual requested work using an adequate existing worker when authoring would delay it without a concrete benefit. Keep authoring and execution separate: review a new capability's instructions before using it, and do not execute untrusted candidate instructions merely to inspect them.
+For authoring, give the selected owner the evidence, intended requests and benefit, nearby exclusions, existing owner/candidate overlap, maintained destination, constraints, authorization and representative validation cases. Resolve aliases and inspect current changes before editing. Default to user-maintained skills; for a managed skill, prepare a concrete proposal at its maintained source rather than patching a plugin cache or creating a shadow copy. Missing authoring tools need an explicit fallback or limitation, not a claim that authoring ran.
+
+Keep this work bounded and scheduled: complete it directly when small, delegate an independent change when capacity permits, or queue it after the main dependency. Do not introduce recursive maintenance of the authoring skills or a collection-wide audit. If the evidence is weak, the benefit is speculative or scope excludes maintenance, reuse current capabilities. Defer a selected worthwhile change only for a concrete scope, priority, access or unresolved decision constraint; state what is prepared and what remains.
+
+Inspect and validate the changed capability before using it: follow its owner's structural and behavioral checks, preserve a reviewable diff, verify installed content, and exercise representative safe scenarios where useful. Keep authoring separate from live execution. Report the changed capability and benefit, or the specific deferral; do not equate a proposed change, saved file or scenario walkthrough with verified runtime use.
 
 ## Codex TOML: verify the installed client first
 
@@ -36,6 +41,8 @@ Prefer the standalone format when supported so a new role does not require chang
 ## Preserve configuration and authority
 
 Before writing, inspect the maintained destination and existing changes. Prepare a narrow diff, preserve unrelated content, avoid name collisions and use the normal filesystem permission mechanism. Do not add model overrides, change global concurrency/defaults, broaden tools, modify provider/MCP credentials, or relax sandbox/approval settings to make the role work. Such changes are a separate concrete decision, not an implication of creating a worker.
+
+Generated skills and agent roles must preserve the Jira write boundary: `acli` is read-only outside `jira-ticket-supporter`; Jira mutations are handed to that owner for preparation, execution and read-back. Do not generate a competing writer, alternate-client fallback or payload for another skill to execute.
 
 A textual read-only instruction is a behavioral constraint, not a new sandbox. Keep the parent session's actual permissions appropriate to the task. A specialized role cannot approve its own critical actions, expand its assignment, or delegate recursively without the coordinator's bounded authorization.
 

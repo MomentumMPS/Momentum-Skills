@@ -6,7 +6,7 @@ Use this reference after the owner identifies a concrete risk or the user reques
 
 Name the artifact/revision, requested outcome, actual risk, available evidence and decision this review informs. Read only the selected installed reviewer:
 
-- `ponytail-review` (or `ponytail:ponytail-review` when installed as a plugin): executable code and behavior, including scripts, queries, configuration and connected callers/tests. Preserve its evidence requirements, finding format and Ship verdict.
+- `ponytail-review` (or `ponytail:ponytail-review`): executable code and behavior, including scripts, queries, configuration and connected callers/tests. Preserve its evidence requirements, finding format and Ship verdict.
 - `mad-senior`: consequential reasoning, requirements, plans, reports, acceptance claims and operational decisions. Provide the sources, intended audience/use, claims to establish, and any action's target, scope, side effects, verification and recovery. Preserve its actionable verdict and limitations: Ship maps to READY/PASS, Fix <finding IDs> first maps to CHANGES REQUIRED, and Blocked - need <evidence/decision> maps to BLOCKED. Readiness never grants execution authority.
 - Mixed work: use both only for distinct consequential questions. For example, Ponytail checks a diagnostic helper's request limit and failure behavior; mad-senior checks whether its observations justify the report's historical root-cause claim. Share evidence rather than duplicating the entire review.
 

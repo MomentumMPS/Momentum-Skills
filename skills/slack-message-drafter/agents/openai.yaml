@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slack Message Drafter"
+  short_description: "Draft Slack messages in the user’s natural voice"
+  default_prompt: "Use $slack-message-drafter to write this Slack message in my natural voice, with the right tone for the recipient."

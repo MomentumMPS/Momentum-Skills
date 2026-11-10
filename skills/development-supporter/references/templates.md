@@ -1,6 +1,6 @@
 # Output templates
 
-Read only the needed section. Scale these templates to the actual change; a small fix needs a concise spec and PR, not empty boilerplate. They are progress artifacts, not automatic approval forms. Follow the main writing rules.
+Read only the needed section. Scale these templates to the actual change; a small fix needs a concise spec and PR, not empty boilerplate. They are internal/chat progress and repository-delivery artifacts, not Jira descriptions or comment templates and not automatic approval forms. Follow the main writing rules. `jira-ticket-supporter` translates relevant outcomes for Jira; do not paste these templates or review records into tickets/comments.
 
 ## Ticket brief (code checkpoint 2 / no-code N1)
 
