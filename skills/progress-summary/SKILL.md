@@ -7,6 +7,10 @@ description: Use work-detective to research the reporting week, then write the u
 
 Prepare a casual, credible update the user can deliver to their chosen audience in 2–3 minutes. Show modest leadership through evidenced ownership, delivery, coordination, and clear status. Use complete spoken sentences in unordered lists grouped by application or initiative.
 
+## Jira write boundary
+
+`acli` is strictly read-only in this skill. Load `jira-ticket-supporter` before every Jira operation and `acli` invocation. Never execute Jira writes here, directly or through scripts, APIs, connectors, browser actions, Smart Commits or another non-owner worker. Hand facts, target, requested change and existing authorization to `jira-ticket-supporter`; it alone drafts, executes and verifies the write. Loading its instructions is not permission for this skill to execute its payload. If the owner is unavailable, keep the write pending; never bypass it.
+
 ## Research through work-detective
 
 Read and use [work-detective](../work-detective/SKILL.md) for intake, source inventory, evidence collection, cross-checking, and the cited case file. Resolve that dependency relative to this skill's real installation directory, so both skills remain siblings regardless of the global installation location. If unavailable, search the skill catalog before reporting the missing dependency; do not substitute a shallower search silently.
@@ -15,8 +19,8 @@ For a new reporting period:
 
 - Honor supplied dates. For “this week” or an unspecified Friday update, use Monday through Friday of the current reporting week in the user's timezone, capped at the actual collection cutoff. Resolve the timezone from trusted current user or host context; ask if unavailable. State the explicit dates and cutoff in the research context; never imply future events have happened.
 - Resolve audience, purpose, language, and email provider from the current request or trusted user context. Use the conversation language unless another is requested. Work-detective owns intake: resolve the involvement level and missing email choice for a new investigation; do not re-ask answers already provided for this case. Do not assume a previous user's preferences.
-- Follow work-detective's broad source coverage, authored and participation passes, pagination, cross-source leads, privacy boundaries, and missing-access handling. Preserve dates, links, and authored/participated/looped-in labels in `evidence.md` in a report-specific working folder. An empty result is not an inaccessible source.
-- Verify the current user's identity before attributing work; use available connectors before CLI or UI fallbacks, following the host's execution and approval rules.
+- Honor explicit source restrictions; broad default coverage does not override a Codex-only or other bounded request. Follow work-detective's applicable source coverage, authored and participation passes, pagination, cross-source leads, privacy boundaries, and missing-access handling. Preserve dates, links, and authored/participated/looped-in labels in `evidence.md` in a report-specific durable working folder, unless the user requests no persistence. Delivered report links must survive a resumed session; scratch files are not durable evidence. An empty result is not an inaccessible source.
+- Route Jira evidence collection and every `acli` invocation through `jira-ticket-supporter`; its access rules take precedence over generic connector/UI fallbacks. Verify identity before attributing work. Keep case-file citations and internal source metadata out of Jira comments if publication is separately requested; the Jira owner writes those comments.
 
 This skill controls the final presentation. Work-detective's detailed report, evidence counts, citations, and involvement labels are supporting material, not text the user must read aloud. Keep its research rigor without reproducing its full report in the speaking script.
 
@@ -29,6 +33,7 @@ Lead with delivered outcomes, then meaningful progress, owner requests, and mate
 - Use **“I”** for the user's own implementation, investigation, decisions, organization, communication, and coordination. Use “we” only for a genuinely joint result. “I coordinated with the application owners after a colleague's integration fix” preserves both leadership and credit. Never imply the user implemented a colleague's fix or manages them.
 - Explain owner needs naturally: “They wanted X” or “They requested X because Y.” Name the owner/team first when the antecedent is unclear. Include a reason only if evidenced or supplied by the user. Distinguish the owner's request from the user's proposed implementation: “They wanted daily reports, so I defined an approach that reuses existing coordinates.”
 - Give the audience enough context to understand the request, the user's response, and current status. Explain unfamiliar technical details in plain language when they affect the outcome; omit incidental implementation mechanics.
+- Read relevant conversation messages through corrections and outcomes; titles and summaries are discovery only. Use action dates within the reporting window and exclude reverted outcomes from delivered claims.
 - Distinguish backlog scope, implemented code, merged DEV changes, Staging, Production, and owner acceptance. An accepted data rollout does not prove live reminder delivery. Preserve material pending checks in the topic itself.
 - Do not invent business impact, metrics, reasons, strategic decisions, adoption, or commitments. Modest leadership comes from concrete actions, not inflated claims.
 

@@ -20,7 +20,9 @@ one of these custom skills depends on them.
 | [jira-ticket-supporter](skills/jira-ticket-supporter) | Custom | Draft and create Jira tickets with reusable templates and verified context. |
 | [requirement-collector](skills/requirement-collector) | Custom | Consolidate requirements and prepare approved ticket drafts. |
 | [progress-summary](skills/progress-summary) | Custom | Write a weekly spoken leadership update from work evidence. |
+| [slack-message-drafter](skills/slack-message-drafter) | Custom | Draft Slack messages using the current user’s evidenced voice. |
 | [work-detective](skills/work-detective) | Custom | Reconstruct work across connected sources with supporting evidence. |
+| [ponytail](skills/ponytail) | Third-party dependency | Apply the smallest complete implementation in development workflows. |
 | [ponytail-review](skills/ponytail-review) | Third-party dependency | Review proposals and results for the development workflows. |
 | [find-skills](skills/find-skills) | Third-party dependency | Discover missing capabilities for development-orchestrator. |
 | [skill-creator](skills/skill-creator) | Third-party dependency | Author and validate capabilities when Coordinator needs them. |
@@ -96,13 +98,13 @@ py -3 install.py
 Native Windows symlinks require suitable permissions (commonly Developer Mode).
 If symlinks are unavailable, copy each complete `skills/<skill-name>` directory
 into `%USERPROFILE%\.agents\skills\` and `%USERPROFILE%\.claude\skills\` after
-checking for conflicts. Keep all thirteen folders together in each location so
+checking for conflicts. Keep all fifteen folders together in each location so
 relative dependency references resolve. Copies must be updated manually.
 
 ### Verify and use
 
 Start a fresh session in each product, open an unrelated project, and ask it to
-list the available skills. Confirm the nine custom skills and four dependencies
+list the available skills. Confirm the ten custom skills and five dependencies
 appear. For example: "Use requirement-collector to organize these requirements."
 Codex also supports `$skill-name`; Claude Code and Cursor support `/skill-name`.
 
@@ -117,7 +119,7 @@ Installing a skill does not install connectors or authorize external writes.
 
 When a required tool is missing, ask your assistant to help install it from its
 official source and verify it before continuing that workflow. Install optional
-tools only when needed. This repository bundles the four required third-party
+tools only when needed. This repository bundles the five required third-party
 skill folders, not their entire upstream packages, command-line tools, or
 binaries. Their licenses and sources are recorded in SOURCES.md.
 

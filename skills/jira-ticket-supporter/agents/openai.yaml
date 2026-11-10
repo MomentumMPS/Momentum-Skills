@@ -1,3 +1,3 @@
 interface:
   display_name: "Jira Ticket Supporter"
-  short_description: "Create clear Jira tickets using Atlassian CLI"
+  short_description: "Manage Jira tickets and comments clearly through acli"

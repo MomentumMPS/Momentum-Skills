@@ -9,7 +9,7 @@ Use only when named branch creation is itself requested or explicitly requested 
 1. Inspect the repository/remote, requested sources and destinations without changing the checkout. Resolve sources to existing commit SHAs. Do not guess missing inputs. If a destination already matches, report it satisfied; if it differs, report the conflict without modifying it. DEV may be absent when creating DEV is itself requested. Preserve a dirty checkout.
 2. At the `Git setup` checkpoint, show the remote, source SHA, destinations and their current states. Check branch-create/push automation for deployment or other side effects. A request naming the missing refs and source normally supplies authorization; do not request another approval for the same creation. Uncovered critical side effects require the main contract's specific authorization. Apply mad-senior only when its risk trigger is met, before consequential external action.
 3. Create authorized missing refs using create-only operations that fail if the destination now exists. Do not use an ordinary push that could advance a concurrently created branch. On a race or ambiguous response, re-read before retrying. Matching refs are satisfied; different refs are conflicts. Verify against the intended SHAs and report partial success honestly.
-4. At `Git result`, report requested-versus-actual refs, evidence and limitations. Perform routine Jira sync only within the requested endpoint. Record an accepted bug/feature solution in Fix when applicable, describing actual branch setup without a no-code label or invented PR. Do not mark Done automatically.
+4. At `Git result`, report requested-versus-actual refs, evidence and limitations. Request routine Jira sync through `jira-ticket-supporter` only within the requested endpoint. Give the Jira owner the verified branch-setup outcome and actual limitations; do not invent a PR or publish internal classification labels. Do not mark Done automatically.
 
 If branch setup is the entire task, stop after verified refs, authorized sync and cleanup. No implementation branch, app startup, spec, test/build, commit, audit or PR is required. Do not undo successful creation as automatic rollback. For mixed tickets, proceed to file implementation; ordinary DEV-base requirements remain. Never create DEV as a workaround for an ordinary code ticket.
 
@@ -29,7 +29,7 @@ Continue through these phases without asking for routine approvals. Pause only f
 
 1. Read applicable AGENTS.md, README, CONTRIBUTING, package/build manifests, lockfiles, CI, PR template and hook/commitlint config. Inspect environment names and example configuration without printing secret values.
 2. Identify relevant commands, runtime, environment/data connections and existing spec conventions. Record the required checks; do not invent a browser, build or test suite for a repository that has none.
-3. Inspect `git status` and existing branches/PRs for the ticket. Preserve unrelated work. Reuse a branch clearly belonging to the assignment; ask only when ownership or divergence is unclear. With unrelated dirty files, prefer an isolated worktree rather than forcing the user to stash, commit or abort. Do not discard or include those changes.
+3. Verify the local remote host/owner/repository against the intended project, including fork versus upstream; record the intended PR destination. Inspect `git status` and existing branches/PRs for the ticket. Preserve unrelated work. Reuse a branch clearly belonging to the assignment; ask only when ownership or divergence is unclear. With unrelated dirty files, prefer an isolated worktree rather than forcing the user to stash, commit or abort. Do not discard or include those changes.
 4. Fetch origin and verify `origin/DEV` (case-sensitive) for new implementation branches. Use its resolved SHA as the baseline. Missing DEV or fetch failure blocks branch creation; never silently fall back to main/master/develop. Keep the recorded baseline for before/after checks even if DEV later advances.
 
 ## Phase 2: Brief, branch and environment (checkpoint 2)
@@ -46,7 +46,7 @@ git switch -c codex/<KEY>-<slug> origin/DEV
 
 Choose the safest environment capable of establishing the outcome. Inspect connected databases, accounts and outbound integrations: LOCAL can call live services and DEV can contain shared data. Treat STG/PRODUCTION reproduction as read-only unless specific write actions are authorized. Environment selection is not deployment authorization.
 
-For end-to-end work, announce and perform routine start sync: assign only if unassigned, transition to the confirmed start status when needed, and post a concise start comment. Re-read each affected resource. Do not duplicate adequate existing updates or reopen a Done ticket automatically.
+For end-to-end work, request routine start sync through `jira-ticket-supporter` within the existing authorization. Give it the meaningful starting context; it decides whether a concise comment adds anything and verifies each authorized write.
 
 ## Phase 3: Prepare only the verification environment needed
 
@@ -56,8 +56,8 @@ When runtime setup is needed:
 1. Install missing dependencies using the repository's lockfile-respecting command. Apply the main authorization contract to dependency changes; do not upgrade merely to make setup convenient.
 2. Use a checked free port. Never kill a pre-existing process. Keep logs outside the repository, record the owned process and read the actual URL from output.
 3. Wait for readiness up to 120 seconds. On failure, redact and show the last 40 lines, diagnose and retry at most twice.
-4. Use available browser tools for UI behavior; if unavailable, use an appropriate supported fallback or report what requires a user check. Do not call manual steps executed evidence until their result is available.
-5. Prefer an existing authorized test session. If authentication is missing, ask the user to sign in or provide the supported test access. Do not log/commit credentials, copy secrets from Jira or use a personal production account for testing.
+4. Apply the entrypoint's browser ownership rule. Verify the served URL/environment and relevant deployed revision or local checkout before attributing UI results to this change. A process listening or HTTP 200 alone does not prove the target flow is ready. Do not call manual steps executed evidence until their result is available.
+5. Use an authorized test account/session in the agent-owned connection (or the user's explicitly selected session) and verify its role can reach the requested flow. If authentication is missing, prepare the exact sign-in destination/access needed and ask for only that missing input. Do not copy the user's browser profile, extract credentials, log/commit secrets or use a personal production account for testing. A login page or wrong-role denial leaves acceptance unverified; it is not proof of an application defect.
 
 ## Phase 4: Investigate and write the spec (checkpoint 3)
 
@@ -71,7 +71,7 @@ Classify findings: CRITICAL for blocked main flows, crashes, data loss/corruptio
 
 Present the chosen approach and proceed on routine in-scope work. Ask for a decision when a genuine requirements conflict, material scope expansion or critical action remains. Story points can flag a mismatch, but do not silently reduce required ACs to fit an estimate. Apply a mad-senior proposal pass only under the main risk contract, before the risky commitment.
 
-Post a concise plan comment when useful for end-to-end work, avoiding duplicates. Write drafted ACs into Jira or create named follow-ups only when specifically authorized. Do not describe an autonomous plan as user-approved.
+Give `jira-ticket-supporter` a meaningful plan update only when useful and within end-to-end scope. Requirements/AC edits and named follow-ups still need specific authorization. Do not describe an autonomous plan as user-approved.
 
 ## Phase 5: Implement
 
@@ -83,7 +83,7 @@ Post a concise plan comment when useful for end-to-end work, avoiding duplicates
 
 ## Phase 6: Verify
 
-1. Run required project checks and checks relevant to the touched behavior: lint, typecheck, tests, build and e2e as applicable. Report unavailable, skipped and failing checks distinctly; do not mark them passed.
+1. Run required project checks and checks relevant to the touched behavior: lint, typecheck, tests, build and e2e as applicable. Reuse adequate results for the same revision. Broaden testing, start extra containers or repeat a full suite only for a project requirement, changed behavior, failure or unresolved risk; optional assurance is not an extra completion gate. Report unavailable, skipped and failing checks distinctly; do not mark them passed.
 2. If needed to attribute a failure, compare against the recorded baseline in an isolated temporary checkout with compatible dependencies. Do not switch away from or overwrite the user's working tree. Document pre-existing failures and whether they block confidence in this change.
 3. Rerun reproduction/AC scenarios on the appropriate surface and check affected adjacent behavior. Capture meaningful evidence, with secrets and personal data redacted.
 4. Self-review the complete ticket change, including committed, staged, unstaged and relevant untracked files, for defects, debug leftovers, secrets and unrelated changes. A committed diff alone omits uncommitted work.
@@ -91,7 +91,7 @@ Post a concise plan comment when useful for end-to-end work, avoiding duplicates
 
 ## Phase 7: Present acceptance evidence (checkpoint 4)
 
-Show each relevant AC as PASS, FAIL or NOT VERIFIED, the evidence, checks, limitations and proposed factual Fix text. Use a live browser walkthrough when it proves UI behavior; tests, API/CLI results or rendered artifacts can demonstrate other deliverables. Do not ask the user to approve a passing routine demo before continuing.
+Show each relevant AC as PASS, FAIL or NOT VERIFIED, the evidence, checks, limitations and a plain-language resolution summary for the Jira owner. Use a live browser walkthrough when it proves UI behavior; tests, API/CLI results or rendered artifacts can demonstrate other deliverables. Do not ask the user to approve a passing routine demo before continuing.
 
 If a separate specialist result review is required and its target is ready, perform it now: Ponytail for executable behavior, mad-senior for consequential non-code artifacts. If audit work remains, perform the final result review after that work so the verdict covers what ships. Do not repeatedly review unchanged artifacts. A human review may still be necessary for a subjective product choice the requirements cannot answer; show the concrete choice and continue independent work.
 
@@ -119,12 +119,12 @@ After changes, rerun affected Phase 6 checks, refresh acceptance evidence and co
 
 ## Phase 10: Push, PR and Jira sync (checkpoint 6)
 
-For an end-to-end assignment, prepare the branch/commit summary, PR title/body/base and exact routine Jira updates. Confirm the final change matches verified evidence and any required reviewer verdict (Ponytail Ship or Mad Senior Ship). Then announce and perform the authorized delivery without another routine approval. If a specific critical action is uncovered, finish the reviewable package first and pause only that action.
+For an end-to-end assignment, prepare the branch/commit summary, PR title/body/base and exact routine Jira updates. Confirm the final change matches verified evidence and any required reviewer verdict (Ponytail Ship or Mad Senior Ship). Then announce and perform authorized Git delivery without another routine approval; Jira Ticket Supporter alone executes and verifies the Jira portion. If a specific critical action is uncovered, finish the reviewable package first and pause only that action.
 
-1. Push the codex/ ticket branch normally. Never force push without specific authorization. Inspect relevant push automation; branch publication must not silently deploy or cause uncovered critical side effects.
-2. Create or update the ticket PR targeting DEV, using the repository template or `references/templates.md`. Include the key in the title, reasoning, evidence, limitations, follow-ups and rollback notes. Use a draft when requested or required by unresolved readiness; a draft does not excuse hiding failed checks. Do not duplicate an existing PR.
+1. Recheck the intended remote host/owner/repository, head branch/SHA and base `DEV`; pass an explicit repository selector to supported GitHub operations instead of relying on a fork or cwd default. Push the codex/ ticket branch normally. Never force push without specific authorization. Inspect relevant push automation; branch publication must not silently deploy or cause uncovered critical side effects.
+2. Create or update the ticket PR targeting DEV, using the repository template or `references/templates.md`. Include the key in the title, reasoning, evidence, limitations, follow-ups and rollback notes. Use a draft when requested or required by unresolved readiness; a draft does not excuse hiding failed checks. Do not duplicate an existing PR. Read back its actual base repository/owner, base branch, head repository/branch/SHA and URL; reconcile them against the intended destination before reporting delivery. A passing code review does not verify PR routing.
 3. If `gh` is unavailable, provide the prepared title/body and DEV compare URL; report PR delivery pending. Do not post a PR-opened claim without a real verified PR URL.
-4. Announce and apply routine Jira sync within the assignment: confirmed review status when appropriate, concise PR comment, and the verified solution in Fix for bugs/features. Preserve all other description content. Create/link only specifically authorized follow-ups. Re-read each affected resource using `references/jira-acli.md`.
+4. Hand the verified outcome, relevant checks, limitations and any real PR reference to `jira-ticket-supporter` for authorized result sync. That owner decides reader-facing wording and placement, preserves requirements and verifies each saved action. Follow-up creation/linking still needs specific authorization.
 5. Never merge, deploy or mark Done as an automatic continuation. Report PR readiness, verification and Jira sync accurately and perform shared cleanup.
 
 ## Definition of done
@@ -136,7 +136,7 @@ For end-to-end file implementation:
 - [ ] Review triggers assessed; required reviews cover the final relevant behavior/conclusions with the appropriate ready verdict and resolved blocking findings.
 - [ ] Commits/hooks and PR follow project conventions, key/link, scope, evidence and rollback requirements.
 - [ ] Requested audit choice completed or optional audit skipped; changes verified and remaining findings disclosed.
-- [ ] PR exists against DEV; authorized Jira sync, including factual Fix when applicable, saved and re-read.
+- [ ] PR exists against DEV; authorized Jira sync, with results returned and verified by `jira-ticket-supporter`.
 - [ ] Existing unrelated work preserved and shared cleanup performed.
 
 For a narrower endpoint, mark only genuinely inapplicable delivery steps as such. Failed or blocked required work remains incomplete, even if the implementation itself is ready.

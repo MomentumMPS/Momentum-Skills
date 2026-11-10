@@ -23,7 +23,7 @@ An explicitly requested non-mutating dependency/security audit is also a valid i
 
 For an external action, show the concrete change, target, actual data/integration risk, expected outcome, verification and recovery where applicable. Continue if already authorized and routine. For a critical action, obtain only missing specific authorization after preparing the concrete package. Apply a mad-senior plan pass only when its risk trigger is met, not just because there is an N1 checkpoint.
 
-For end-to-end resolution, routine start Jira updates may assign only an unassigned ticket, move to a confirmed start status and post a concise classification/scope comment. Announce and verify each write; avoid duplicates. An investigation-only request does not authorize these writes unless separately requested.
+For end-to-end resolution, request routine start sync through `jira-ticket-supporter` under its existing-ticket contract. Keep classification in working context; publish only useful reader-facing progress. An investigation-only request does not authorize these writes unless separately requested.
 
 Execute authorized actions and verify their observed results. A blocked action remains pending; identify the owner/input needed. Do not turn an operational blocker into an invented code solution.
 
@@ -33,11 +33,11 @@ Execute authorized actions and verify their observed results. A blocked action r
 2. Re-read current ticket requirements/decisions when accessible and recheck classification. Compare content, not timestamps alone; refresh snapshots after own verified writes. Resolve material conflicts without repeating completed investigation.
 3. Present classification/reason, root cause or explanation, actual actions or verified existing behavior, evidence per AC, limitations and necessary follow-up. For investigation-only work, distinguish completed findings from an unresolved bug; do not invent a corrective action.
 4. Assess whether the main mad-senior risk trigger applies to the result. Routine source-backed reports need no separate pass. Review only newly consequential uncertainty or an explicitly requested review; ordinary outcome verification still applies.
-5. For an end-to-end completed bug/feature, prepare factual Fix text per `references/jira-acli.md`, beginning with `NO CODE SOLUTION NEEDED` and the reason no repository change is needed. Research/report tasks normally need only the findings comment when publishing is in scope. Unresolved investigations get a pending/needs-info report, not a completed Fix.
+5. Give `jira-ticket-supporter` the verified outcome, relevant checks and remaining limits for any authorized result update. Research/report tasks normally need only a concise findings comment when publishing is in scope. Clearly distinguish completed investigation from unresolved remediation; keep internal no-code labels out of published text.
 
-Use adequate existing evidence/reporting; do not duplicate Jira comments on resume. Announce exact proposed writes and proceed under existing scope without asking for routine acceptance. A request to post findings authorizes that comment, not description edits or transitions. Routine resolution sync may use a confirmed appropriate review status; otherwise retain status. Do not automatically mark Done or post a PR placeholder.
+Use adequate existing evidence/reporting; do not duplicate Jira comments on resume. Hand the exact requested changes and existing authorization to `jira-ticket-supporter` for execution and read-back without asking for routine acceptance; never run the writes from this skill. A request to post findings authorizes that comment, not description edits or transitions. Routine resolution sync may use a confirmed appropriate review status; otherwise retain status. Do not automatically mark Done or post a PR placeholder.
 
-Apply authorized writes, preserve other description content and verify the actual saved resource. If Jira is unavailable or a write fails, retain prepared text and report sync incomplete. If evidence fails the requested ACs, report the remaining work instead of declaring resolution. Only an uncovered critical decision requires a human stop.
+Have `jira-ticket-supporter` apply authorized writes, preserve other description content and verify the actual saved resource. If Jira is unavailable or a write fails, retain prepared text and report sync incomplete. If evidence fails the requested ACs, report the remaining work instead of declaring resolution. Only an uncovered critical decision requires a human stop.
 
 End here after the requested outcome, authorized sync and cleanup. Never enter code implementation, optional audit remediation/cherry-picks, commits or PR delivery merely to finish a no-code report.
 
@@ -46,7 +46,7 @@ End here after the requested outcome, authorized sync and cleanup. Never enter c
 - [ ] Classification/source and requested endpoint recorded; inherited Git artifacts preserved/disclosed.
 - [ ] Requested report or non-code outcome verified against relevant ACs, with limitations and unresolved underlying issues distinguished.
 - [ ] Only authorized actions executed and observed results verified; required critical decisions and risk reviews satisfied.
-- [ ] Authorized Jira writes saved and re-read, including factual Fix only when applicable; no automatic Done transition.
+- [ ] Authorized Jira writes saved and re-read, through `jira-ticket-supporter`; no automatic Done transition.
 - [ ] No repository or Git delivery artifacts created; shared cleanup complete.
 
 An inaccessible required source or failed required write remains incomplete. Absence of code artifacts and absence of routine human acceptance are expected, not missing delivery steps.
